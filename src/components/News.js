@@ -1,8 +1,14 @@
 import React, { Component } from "react";
 import NewsItem from "./NewsItem";
 import Spinner from "./Spinner";
+import PropTypes from "prop-types";
 
 export class News extends Component {
+  static defaultProps = {
+    category: "general",
+    pageSize: 8,
+
+  };
   constructor() {
     super();
     this.state = {
@@ -14,7 +20,7 @@ export class News extends Component {
   }
 
   async componentDidMount() {
-    let baseUrl = `https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=2675b76c6e714c869e7679ed95dacd8a&pageSize=${this.props.pageSize}&page=${this.state.page}`;
+    let baseUrl = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=2675b76c6e714c869e7679ed95dacd8a&pageSize=${this.props.pageSize}&page=${this.state.page}`;
     this.setState({ loading: true });
     let data = await fetch(baseUrl);
     let parsedData = await data.json();
@@ -26,7 +32,9 @@ export class News extends Component {
   }
 
   handlePreClick = async () => {
-    let baseUrl = `https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=2675b76c6e714c869e7679ed95dacd8a&pageSize=${
+    let baseUrl = `https://newsapi.org/v2/top-headlines?country=in&category=${
+      this.props.category
+    }&apiKey=2675b76c6e714c869e7679ed95dacd8a&pageSize=${
       this.props.pageSize
     }&page=${this.state.page - 1}`;
     this.setState({ loading: true });
@@ -39,7 +47,9 @@ export class News extends Component {
     });
   };
   handleNextClick = async () => {
-    let baseUrl = `https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=2675b76c6e714c869e7679ed95dacd8a&pageSize=${
+    let baseUrl = `https://newsapi.org/v2/top-headlines?country=in&category=${
+      this.props.category
+    }&apiKey=2675b76c6e714c869e7679ed95dacd8a&pageSize=${
       this.props.pageSize
     }&page=${this.state.page + 1}`;
     this.setState({ loading: true });
@@ -67,12 +77,16 @@ export class News extends Component {
                     description={element.description}
                     imageUrl={element.urlToImage}
                     newsUrl={element.url}
+                    author={element.author}
+                    date = {element.publishedAt}
+                    source = {element.source.name}
+
                   />
                 </div>
               );
             })}
         </div>
-        <div className="container d-flex justify-content-evenly">
+        <div className="container d-flex justify-content-evenly mt-4">
           <button
             type="button"
             className="btn btn-dark"
