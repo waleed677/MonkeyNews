@@ -11,17 +11,7 @@ export default class App extends Component {
       <div>
         <Navbar />
         <div className="container my-5">
-          <div className="row">
-            <div className="col-md-4">
-              <News title={"Code With Harry"} description={"Lorum Ispum"} />
-            </div>
-            <div className="col-md-4">
-              <News title={"Code With Harry"} description={"Lorum Ispum"} />
-            </div>
-            <div className="col-md-4">
-              <News title={"Code With Harry"} description={"Lorum Ispum"} />
-            </div>
-          </div>
+        <News/>
         </div>
       </div>
     );
