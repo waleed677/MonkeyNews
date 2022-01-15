@@ -4,4 +4,10 @@ This app fetched different news from internet according to the category using th
 
 ## To Run this APP
 
-In the project root folder run command npm install and then run npm start or yarn start
+In the project root folder run command 
+
+`npm install`
+
+and then run 
+
+`npm start` or `yarn start`
