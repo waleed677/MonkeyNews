@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import loader from "./loader.gif";
 
-export default class Spinner extends Component {
-  render() {
+  const Spinner = () => {
     return (
       <div className="d-flex justify-content-center">
         <div className="spinner-border" role="status">
@@ -10,5 +9,7 @@ export default class Spinner extends Component {
         </div>
       </div>
     );
-  }
+ 
 }
+
+export default Spinner;
